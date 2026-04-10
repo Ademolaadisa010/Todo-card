@@ -9,7 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet" />
 
   <style>
-    /* ── Reset & Tokens ────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -17,7 +16,7 @@
       --surface:     #19181e;
       --surface-2:   #222028;
       --border:      #2e2c37;
-      --accent:      #c8fb50;     /* lime punch */
+      --accent:      #c8fb50;
       --accent-dim:  #a0cc35;
       --accent-glow: rgba(200,251,80,.15);
       --text-1:      #f0eff5;
@@ -44,12 +43,10 @@
       padding: 24px 16px;
       font-family: 'DM Sans', sans-serif;
       color: var(--text-1);
-      /* subtle dot-grid */
       background-image: radial-gradient(circle, #2e2c37 1px, transparent 1px);
       background-size: 28px 28px;
     }
 
-    /* ── Card ──────────────────────────────────────────────────────── */
     [data-testid="test-todo-card"] {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -79,7 +76,6 @@
       to   { opacity:1; transform: translateY(0)    scale(1);   }
     }
 
-    /* ── Card Header stripe ────────────────────────────────────────── */
     .card-header {
       display: flex;
       align-items: center;
@@ -96,7 +92,6 @@
       gap: 10px;
     }
 
-    /* ── Checkbox ──────────────────────────────────────────────────── */
     .checkbox-wrap {
       position: relative;
       flex-shrink: 0;
@@ -152,7 +147,6 @@
       user-select: none;
     }
 
-    /* ── Priority Badge ────────────────────────────────────────────── */
     [data-testid="test-todo-priority"] {
       font-family: 'DM Mono', monospace;
       font-size: 11px;
@@ -182,12 +176,10 @@
       border-color: rgba(108,182,255,.35);
     }
 
-    /* ── Card Body ─────────────────────────────────────────────────── */
     .card-body {
       padding: 20px 22px 18px;
     }
 
-    /* ── Title ─────────────────────────────────────────────────────── */
     [data-testid="test-todo-title"] {
       font-family: 'Syne', sans-serif;
       font-size: clamp(1.05rem, 3.5vw, 1.3rem);
@@ -204,7 +196,6 @@
       color: var(--text-3);
     }
 
-    /* ── Description ───────────────────────────────────────────────── */
     [data-testid="test-todo-description"] {
       font-size: .9rem;
       color: var(--text-2);
@@ -213,7 +204,6 @@
       word-break: break-word;
     }
 
-    /* ── Meta row ──────────────────────────────────────────────────── */
     .meta-row {
       display: flex;
       align-items: flex-start;
@@ -351,7 +341,6 @@
       color: var(--accent);
     }
 
-    /* ── Divider ───────────────────────────────────────────────────── */
     .card-footer {
       display: flex;
       align-items: center;
@@ -361,7 +350,6 @@
       border-top: 1px solid var(--border);
     }
 
-    /* ── Buttons ───────────────────────────────────────────────────── */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -409,7 +397,6 @@
       border-radius: 100px 100px 0 0;
     }
 
-    /* ── Watermark label ────────────────────────────────────────────── */
     .page-label {
       margin-top: 28px;
       font-family: 'DM Mono', monospace;
@@ -419,7 +406,6 @@
       color: var(--text-3);
     }
 
-    /* ── Responsive ────────────────────────────────────────────────── */
     @media (max-width: 480px) {
       [data-testid="test-todo-card"] {
         max-width: 100%;
@@ -434,9 +420,6 @@
 </head>
 <body>
 
-  <!-- ═══════════════════════════════════════════════════════════════ -->
-  <!-- CARD                                                            -->
-  <!-- ═══════════════════════════════════════════════════════════════ -->
   <article
     data-testid="test-todo-card"
     aria-label="Todo task: Redesign the onboarding flow"
@@ -444,7 +427,7 @@
     <!-- Accent top bar -->
     <div class="card-accent-bar" aria-hidden="true"></div>
 
-    <!-- ── Header ── -->
+    <!--  Header  -->
     <div class="card-header">
       <div class="header-left">
         <!-- Checkbox -->
@@ -574,15 +557,9 @@
   </article>
 
   <p class="page-label" aria-hidden="true">Frontend Wizards — Stage 0</p>
-
-  <!-- ═══════════════════════════════════════════════════════════════ -->
-  <!-- JAVASCRIPT                                                      -->
-  <!-- ═══════════════════════════════════════════════════════════════ -->
   <script>
-    /* ── Due date (fixed) ──────────────────────────────────────────── */
     const DUE = new Date('2026-04-16T18:00:00Z');
 
-    /* ── Time remaining logic ─────────────────────────────────────── */
     function getTimeRemaining() {
       const diffMs  = DUE - Date.now();
       const diffMin = Math.round(diffMs / 60000);
@@ -619,7 +596,6 @@
     updateTimeRemaining();
     setInterval(updateTimeRemaining, 60000);
 
-    /* ── Checkbox toggle ─────────────────────────────────────────── */
     const checkbox   = document.getElementById('todo-complete');
     const card       = document.querySelector('[data-testid="test-todo-card"]');
     const statusEl   = document.querySelector('[data-testid="test-todo-status"]');
@@ -646,7 +622,6 @@
       }
     });
 
-    /* ── Button handlers ─────────────────────────────────────────── */
     function handleEdit() {
       console.log('edit clicked');
       // Briefly flash the card border
